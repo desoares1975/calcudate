@@ -1,7 +1,7 @@
 {
   "name": "calcudate",
   "version": "0.0.1",
-  "description": "General date calculation for JavaScript",
+  "description": "Light weight general date calculation for JavaScript",
   "main": "index.js",
   "scripts": {
     "test": "echo 'auto-api test mode...'; jshint ./; ./node_modules/.bin/nodemon --exec mocha"
@@ -12,13 +12,10 @@
   },
   "keywords": [
     "date",
-    "sum",
-    "data",
+    "sum date",
     "calc",
-    "caculate",
-    "date",
-    "sutract",
-    "date"
+    "caculate date",
+    "sutract date"
   ],
   "author": "desoares1975",
   "license": "MIT",
