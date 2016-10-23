@@ -1,6 +1,6 @@
 {
   "name": "calcudate",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Light weight general date calculation for JavaScript",
   "main": "index.js",
   "scripts": {
