@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/desoares1975/calcudate#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "jshint": "^2.9.4",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0"

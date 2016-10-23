@@ -1,12 +1,20 @@
 'use strict';
 
-const hour = 3600000;
 const day = 86400000;
+const hour = 3600000;
+const min = 60000;
+const sec = 1000;
 
-module.exports.date = {
+module.exports = {
     add: function (date) {
         date = date || new Date();
         return {
+            'secs': amount => {
+                return new Date(date.getTime() + (amount * sec));
+            },
+            'minutes': amount => {
+                return new Date(date.getTime() + (amount * min));
+            },
             'hours': amount => {
                 return new Date(date.getTime() + (amount * hour));
             },
@@ -14,7 +22,10 @@ module.exports.date = {
                 return new Date(date.getTime() + (amount * day));
             },
             'months': amount => {
-                return new Date (date.getFullYear(), (date.getMonth() + amount), date.getDate());
+                return new Date (date.getFullYear(), (date.getMonth() + amount), date.getDate(), date.getHours());
+            },
+            'years': amount => {
+                return new Date ((date.getFullYear() + amount), date.getMonth(), date.getDate(), date.getHours());
             }
         };
     },
