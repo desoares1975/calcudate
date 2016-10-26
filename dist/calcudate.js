@@ -32,6 +32,12 @@ module.exports = {
     sub: function (date) {
         date = date || new Date();
         return {
+            'secs': amount => {
+                return new Date(date.getTime()  - (sec * amount));
+            },
+            'minutes': amount => {
+                return new Date(date.getTime() - (min * amount));
+            },
             'hours': amount => {
                 return new Date(date.getTime() - (amount * hour));
             },
@@ -39,7 +45,10 @@ module.exports = {
                 return new Date(date.getTime() - (amount * day));
             },
             'months': amount => {
-                return new Date (date.getFullYear(), (date.getMonth() - amount), date.getDate());
+                return new Date (date.getFullYear(), (date.getMonth() - amount), date.getDate(), date.getHours());
+            },
+            'years': amount => {
+                return new Date((date.getFullYear() - amount), date.getMonth(), date.getDate(), date.getHours());
             }
         };
     },

@@ -54,3 +54,48 @@ describe('add', () => {
         done();
     });
 });
+
+describe('sub', () => {
+    it('Should subtract 12 years', done => {
+        let origin = new Date('2016-07-10T18:00:00.000');
+        let subYears = new Date('2004-07-10T18:00:00.000');
+        let subtracted = date.sub(origin).years(12);
+        expect(subtracted.toString()).to.equal(subYears.toString());
+        done();
+    });
+    it('Should subtract 24 months', done => {
+        let origin = new Date('2016-07-10T18:00:00.000');
+        let subMonths = new Date('2014-07-10T18:00:00.000');
+        let subtracted = date.sub(origin).months(24);
+        expect(subtracted.toString()).to.equal(subMonths.toString());
+        done();
+    });
+    it('Should subtract 29 days', done => {
+        let origin = new Date('2016-07-10T18:00:00.000');
+        let subdays = new Date('2016-06-11T18:00:00.000');
+        let subtracted = date.sub(origin).days(29);
+        expect(subtracted.toString()).to.equal(subdays.toString());
+        done();
+    });
+    it('Should subtract 36 hours', done => {
+        let origin = new Date('2016-10-26T21:23:00.000');
+        let subHours = new Date('2016-10-25T16:23:00.000');
+        let subtracted = date.sub(origin).hours(29);
+        expect(subtracted.toString()).to.equal(subHours.toString());
+        done();
+    });
+    it('Should subtract 25 minutes', done => {
+        let origin = new Date('2016-10-26T21:28:00.000');
+        let subMins = new Date('2016-10-26T21:03:00.000');
+        let subtracted = date.sub(origin).minutes(25);
+        expect(subtracted.toString()).to.equal(subMins.toString());
+        done();
+    });
+    it('Should subtract 90 seconds', done => {
+        let origin = new Date('2016-10-26T21:28:00.000');
+        let subMins = new Date('2016-10-26T21:26:30.000');
+        let subtracted = date.sub(origin).secs(90);
+        expect(subtracted.toString()).to.equal(subMins.toString());
+        done();
+    });
+});
