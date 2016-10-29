@@ -112,9 +112,9 @@ describe('last', () => {
         let lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).day;
         let lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).day;
         let lastSep = date.getLastOf(new Date('2016-09-01 03:00:00')).day;
-        let lastOuc = date.getLastOf(new Date('2016-10-01 03:00:00')).day;
-        let lastNov = date.getLastOf(new Date('2016-11-01 03:00:00')).day;
-        let lastDec = date.getLastOf(new Date('2016-12-01 03:00:00')).day;
+        let lastOuc = date.getLastOf(new Date('2016-10-01 02:00:00')).day;
+        let lastNov = date.getLastOf(new Date('2016-11-01 02:00:00')).day;
+        let lastDec = date.getLastOf(new Date('2016-12-01 02:00:00')).day;
 
         expect(lastJan).to.equal(31);
         expect(lastFeb).to.equal(29);
@@ -131,4 +131,22 @@ describe('last', () => {
         expect(lastDec).to.equal(31);
         done();
      });
+});
+
+describe('getOffset', () => {
+    it('Should return offset integer', done => {
+        let control = new Date().getTimezoneOffset();
+        let offset = date.getOffset().int;
+        expect(offset).to.equal(control);
+        done();
+    });
+    it('Should return -0300', done => {
+        let offset = date.getOffset().str;
+        let control = new Date().toString();
+        let start = control.indexOf('GMT');
+        control.substring( start + 3, start + 8)
+
+        expect(offset).to.equal(control.substring( start + 3, start + 8));
+        done();
+    });
 });

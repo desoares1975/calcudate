@@ -61,8 +61,12 @@ module.exports = {
     },
     getOffset: function (date) {
         date = date || new Date();
+        let offset = date.getTimezoneOffset();
+        let offsetToHours = offset / 60;
+
         return {
-            'abs': date.getTimezoneOffset()
+            'int': offset,
+            'str':  (offset > 0 ? '-' : '+') +  (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + '00'
         };
     }
 };
