@@ -102,12 +102,12 @@ describe('sub', () => {
 
 describe('last', () => {
      it('Should return last day of each month', done => {
-        let lastJan = date.getLastOf(new Date('2016-01-01 03:00:00')).day;
-        let lastFeb = date.getLastOf(new Date('2016-02-01 03:00:00')).day;
+        let lastJan = date.getLastOf(new Date('2016-01-01 00:00:00')).day;
+        let lastFeb = date.getLastOf(new Date('2016-02-01 00:00:00')).day;
         let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day;
         let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day;
         let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day;
-        let lastMay = date.getLastOf(new Date('2016-05-01 03:00:00')).day;
+        let lastMay = date.getLastOf(new Date('2016-05-01 12:00:00')).day;
         let lastJun = date.getLastOf(new Date('2016-06-01 03:00:00')).day;
         let lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).day;
         let lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).day;
@@ -131,6 +131,36 @@ describe('last', () => {
         expect(lastDec).to.equal(31);
         done();
      });
+     it('Should return last date of each month', done => {
+        let lastJan = date.getLastOf(new Date('2016-01-01 00:00:00')).date;
+        let lastFeb = date.getLastOf(new Date('2016-02-01 00:00:00')).date;
+        let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).date;
+        let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).date;
+        let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).date;
+        let lastMay = date.getLastOf(new Date('2016-05-01 12:00:00')).date;
+        let lastJun = date.getLastOf(new Date('2016-06-01 03:00:00')).date;
+        let lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).date;
+        let lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).date;
+        let lastSep = date.getLastOf(new Date('2016-09-01 03:00:00')).date;
+        let lastOuc = date.getLastOf(new Date('2016-10-01 02:00:00')).date;
+        let lastNov = date.getLastOf(new Date('2016-11-01 02:00:00')).date;
+        let lastDec = date.getLastOf(new Date('2016-12-01 02:00:00')).date;
+
+        expect(lastJan.toString()).to.equal(new Date('Sun, 31 Jan 2016 02:00:00 GMT').toString());
+        expect(lastFeb.toString()).to.equal(new Date('2016-02-29 00:00:00').toString());
+        expect(lastFebLast.toString()).to.equal(new Date('2015-02-28 00:00:00').toString());
+        expect(lastMar.toString()).to.equal(new Date('2016-03-31 00:00:00').toString());
+        expect(lastApr.toString()).to.equal(new Date('2016-04-30 00:00:00').toString());
+        expect(lastMay.toString()).to.equal(new Date('2016-05-31 00:00:00').toString());
+        expect(lastJun.toString()).to.equal(new Date('2016-06-30 00:00:00').toString());
+        expect(lastJul.toString()).to.equal(new Date('2016-07-31 00:00:00').toString());
+        expect(lastAug.toString()).to.equal(new Date('2016-08-31 00:00:00').toString());
+        expect(lastSep.toString()).to.equal(new Date('2016-09-30 00:00:00').toString());
+        expect(lastOuc.toString()).to.equal(new Date('2016-10-31 00:00:00').toString());
+        expect(lastNov.toString()).to.equal(new Date('2016-11-30 00:00:00').toString());
+        expect(lastDec.toString()).to.equal(new Date('2016-12-31 00:00:00').toString());
+        done();
+     });
 });
 
 describe('getOffset', () => {
@@ -140,11 +170,10 @@ describe('getOffset', () => {
         expect(offset).to.equal(control);
         done();
     });
-    it('Should return -0300', done => {
+    it('Should return offset string', done => {
         let offset = date.getOffset().str;
         let control = new Date().toString();
         let start = control.indexOf('GMT');
-        control.substring( start + 3, start + 8)
 
         expect(offset).to.equal(control.substring( start + 3, start + 8));
         done();

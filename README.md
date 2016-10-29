@@ -23,6 +23,10 @@ date.sub(new Date()).hours(10) //will subtract ten hours
 date.sub(new Date()).minutes(10) //will subtract ten minutess
 date.sub(new Date()).secs(10) //will subtract ten seconds
 
+let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day; //return 28
+let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day; //return 29
+let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day; //return 31
+
 let offset = date.getOffset().int; //return local offset integer like 0 for GMT or 180 for BRT
 let offset = date.getOffset().str; ////return local offset integer like +0000 for GMT or -0300 for BRT
 
