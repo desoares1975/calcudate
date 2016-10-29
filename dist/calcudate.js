@@ -52,22 +52,17 @@ module.exports = {
             }
         };
     },
-    last: function (date) {
+    getLastOf: function (date) {
         date = date || new Date();
         return {
             'day': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
             'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
         };
     },
-    getIni: function (date) {
-        date = date || new Date();
-        return {
-            'hour': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()),
-            'day': new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-            'month': new Date(date.getFullYear(), date.getMonth(), '01')
-        };
-    },
     getOffset: function (date) {
         date = date || new Date();
+        return {
+            'abs': date.getTimezoneOffset()
+        };
     }
 };

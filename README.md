@@ -6,6 +6,7 @@ npm install calcudate
 
 ```js
 let date = require('calcudate');
+
 let someDate = new Date('2015-11-12');
 date.add(new Date()).years(10) //will add ten years
 date.add(someDate).months(10) // returns date '2015-11-12T00:00:00'

@@ -99,3 +99,36 @@ describe('sub', () => {
         done();
     });
 });
+
+describe('last', () => {
+     it('Should return last day of each month', done => {
+        let lastJan = date.getLastOf(new Date('2016-01-01 03:00:00')).day;
+        let lastFeb = date.getLastOf(new Date('2016-02-01 03:00:00')).day;
+        let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day;
+        let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day;
+        let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day;
+        let lastMay = date.getLastOf(new Date('2016-05-01 03:00:00')).day;
+        let lastJun = date.getLastOf(new Date('2016-06-01 03:00:00')).day;
+        let lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).day;
+        let lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).day;
+        let lastSep = date.getLastOf(new Date('2016-09-01 03:00:00')).day;
+        let lastOuc = date.getLastOf(new Date('2016-10-01 03:00:00')).day;
+        let lastNov = date.getLastOf(new Date('2016-11-01 03:00:00')).day;
+        let lastDec = date.getLastOf(new Date('2016-12-01 03:00:00')).day;
+
+        expect(lastJan).to.equal(31);
+        expect(lastFeb).to.equal(29);
+        expect(lastFebLast).to.equal(28);
+        expect(lastMar).to.equal(31);
+        expect(lastApr).to.equal(30);
+        expect(lastMay).to.equal(31);
+        expect(lastJun).to.equal(30);
+        expect(lastJul).to.equal(31);
+        expect(lastAug).to.equal(31);
+        expect(lastSep).to.equal(30);
+        expect(lastOuc).to.equal(31);
+        expect(lastNov).to.equal(30);
+        expect(lastDec).to.equal(31);
+        done();
+     });
+});
