@@ -4,30 +4,68 @@
 npm install calcudate
 ```
 
+Sum Years, months, days, hours, minutes or seconds to a date:
 ```js
 let date = require('calcudate');
 
 let someDate = new Date('2015-11-12');
-date.add(new Date()).years(10) //will add ten years
-date.add(someDate).months(10) // returns date '2015-11-12T00:00:00'
-date.add(new Date('2016-10-10T10:10:10.000')).days(10) //return date '2016-10-20T10:10:10.000'
-date.add(new Date()).hours(10) //will add ten hours
-date.add(new Date()).minutes(10) //will add ten minutess
-date.add(new Date()).secs(10) //will add ten seconds
+//add ten years
+date.add(new Date()).years(10)
+
+// returns date '2015-11-12T00:00:00'
+date.add(someDate).months(10)
+
+//return date '2016-10-20T10:10:10.000'
+date.add(new Date('2016-10-10T10:10:10.000')).days(10)
+
+//add ten hours
+date.add(new Date()).hours(10)
+
+//add ten minutess
+date.add(new Date()).minutes(10)
+
+//add ten seconds
+date.add(new Date()).secs(10)
+```
+Subtract Years, months, days, hours, minutes or seconds of a date:
+```js
+let date = require('calcudate');
 
 let someDate = new Date('2015-11-12');
-date.sub(new Date()).years(10) //will subtract ten years
-date.sub(someDate).months(10) // returns date '2015-01-12T00:00:00'
-date.sub(new Date('2016-10-10T10:10:10.000')).days(10) //return date '2016-10-10T10:10:10.000'
-date.sub(new Date()).hours(10) //will subtract ten hours
-date.sub(new Date()).minutes(10) //will subtract ten minutess
-date.sub(new Date()).secs(10) //will subtract ten seconds
 
+//subtract ten years
+date.sub(new Date()).years(10)
+
+// returns date '2015-01-12T00:00:00'
+date.sub(someDate).months(10)
+
+//return date '2016-10-10T10:10:10.000'
+date.sub(new Date('2016-10-10T10:10:10.000')).days(10)
+
+//subtract ten hours
+date.sub(new Date()).hours(10)
+
+//subtract ten minutess
+date.sub(new Date()).minutes(10)
+
+//subtract ten seconds
+date.sub(new Date()).secs(10)
+```
+Get the last day or date of a month:
+```js
+let date = require('calcudate');
 let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day; //return 28
 let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day; //return 29
 let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day; //return 31
+```
+Get the integer timezone offset or the string
+```js
+let date = require('calcudate');
 
-let offset = date.getOffset().int; //return local offset integer like 0 for GMT or 180 for BRT
-let offset = date.getOffset().str; ////return local offset integer like +0000 for GMT or -0300 for BRT
+//return local offset integer like 0 for GMT or 180 for BRT
+let offset = date.getOffset().int;
+
+//return local offset integer like +0000 for GMT or -0300 for BRT
+let offset = date.getOffset().str;
 
 ```

@@ -1,6 +1,6 @@
 {
   "name": "calcudate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Light weight general date calculation for JavaScript",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "sum date",
     "calc",
     "caculate date",
-    "sutract date"
+    "subtract date"
   ],
   "author": "desoares1975",
   "license": "MIT",
