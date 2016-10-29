@@ -1,4 +1,4 @@
-#INITIAL VERSION NOT COMPLETE
+#calcudate 1.0git pusho
 ##Usage
 ```bash
 npm install calcudate
