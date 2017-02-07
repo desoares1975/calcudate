@@ -6,62 +6,69 @@ const min = 60000;
 const sec = 1000;
 
 module.exports = {
-    add: function (date) {
-        date = date || new Date();
+    add: function (d) {
+        d = d || new Date();
         return {
             'secs': amount => {
-                return new Date(date.getTime() + (amount * sec));
+                return new Date(d.getTime() + (amount * sec));
             },
             'minutes': amount => {
-                return new Date(date.getTime() + (amount * min));
+                return new Date(d.getTime() + (amount * min));
             },
             'hours': amount => {
-                return new Date(date.getTime() + (amount * hour));
+                return new Date(d.getTime() + (amount * hour));
             },
             'days': amount => {
-                return new Date(date.getTime() + (amount * day));
+                return new Date(d.getTime() + (amount * day));
             },
             'months': amount => {
-                return new Date (date.getFullYear(), (date.getMonth() + amount), date.getDate(), date.getHours());
+                return new Date (d.getFullYear(), (d.getMonth() + amount), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
             },
             'years': amount => {
-                return new Date ((date.getFullYear() + amount), date.getMonth(), date.getDate(), date.getHours());
+                return new Date ((d.getFullYear() + amount), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
             }
         };
     },
-    sub: function (date) {
-        date = date || new Date();
+    sub: function (d) {
+        d = d || new Date();
         return {
             'secs': amount => {
-                return new Date(date.getTime()  - (sec * amount));
+                return new Date(d.getTime()  - (sec * amount));
             },
             'minutes': amount => {
-                return new Date(date.getTime() - (min * amount));
+                return new Date(d.getTime() - (min * amount));
             },
             'hours': amount => {
-                return new Date(date.getTime() - (amount * hour));
+                return new Date(d.getTime() - (amount * hour));
             },
             'days': amount => {
-                return new Date(date.getTime() - (amount * day));
+                return new Date(d.getTime() - (amount * day));
             },
             'months': amount => {
-                return new Date (date.getFullYear(), (date.getMonth() - amount), date.getDate(), date.getHours());
+                return new Date (d.getFullYear(), (d.getMonth() - amount), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
             },
             'years': amount => {
-                return new Date((date.getFullYear() - amount), date.getMonth(), date.getDate(), date.getHours());
+                return new Date((d.getFullYear() - amount), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
             }
         };
     },
-    getLastOf: function (date) {
-        date = date || new Date();
+    getLastOf: function (d) {
+        d = d || new Date();
         return {
-            'day': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
-            'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
+            'day': new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(),
+            'date': new Date(d.getFullYear(), d.getMonth() + 1, 0)
         };
     },
-    getOffset: function (date) {
-        date = date || new Date();
-        let offset = date.getTimezoneOffset();
+    getStart: function (d) {
+        d = d || new Date();
+        return {
+            'day': new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0),
+            'hour': new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours())
+        }
+    },
+    getOffset: function (d) {
+        d = d || new Date();
+        let offset = d.getTimezoneOffset();
         let offsetToHours = offset / 60;
 
         return {
