@@ -64,7 +64,7 @@ module.exports = {
         return {
             'day': new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0),
             'hour': new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours())
-        }
+        };
     },
     getOffset: function (d) {
         d = d || new Date();

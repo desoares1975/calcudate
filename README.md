@@ -51,6 +51,13 @@ date.sub(new Date()).minutes(10)
 //subtract ten seconds
 date.sub(new Date()).secs(10)
 ```
+Get start time of day or hour (On local time!)
+```js
+let date = require('calcudate');
+let aDate = new Date('2017-02-20T22:02:36:23.296');
+let myDate = getStart(aDate).day;
+// WARNING - return 2017-02-20T00:00:00:00.000 or 2017-02-20T03:00:00:00.000 depeding local time
+```
 Get the last day or date of a month:
 ```js
 let date = require('calcudate');
