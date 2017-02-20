@@ -1,6 +1,6 @@
 'use strict';
 
-const date =  require('../dist/calcudate');
+const date =  require('../dist/nodejs/calcudate');
 const expect = require('chai').expect;
 
 describe('add', () => {
@@ -13,8 +13,8 @@ describe('add', () => {
     });
     it('should do add 4 months', done => {
         let origin = new Date('2016-10-23T18:09:56.895'),
-            addMonths = new Date('2016-11-23T18:09:56.895'),
-            summed = date.add(origin).months(1);
+            addMonths = new Date('2017-02-23T19:09:56.895'),
+            summed = date.add(origin).months(4);
         expect(+summed).to.equal(+addMonths);
         done();
     });
@@ -49,8 +49,67 @@ describe('add', () => {
     it('Should add 180 seconds', done => {
         let origin = new Date('2016-10-23T15:34:34.783'),
             addSecs = new Date('2016-10-23T15:37:34.783'),
-            summed = date.add(origin).secs(180);
+            summed = date.add(origin).seconds(180);
         expect(+summed).to.equal(+addSecs);
+        done();
+    });
+});
+
+describe('add aliases', () => {
+    it('should do add 9 years', done => {
+        let test = new Date('2017-02-20T18:09:39.216Z'),
+            control = date.add(test).years(9),
+            tested = date.add(test).y(9),
+            retested = date.add(test).Y(9);
+
+        expect(+control).to.equal(+tested);
+        expect(+control).to.equal(+retested);
+        done();
+    });
+    it('should do add 1 months', done => {
+        let test = new Date('2016-10-23T18:09:56.895'),
+            control = date.add(test).months(1),
+            tested = date.add(test).M(1),
+            retested = date.add(test).mo(1);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
+        done();
+    });
+    it('should do add one day', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.add(test).days(1),
+            tested = date.add(test).d(1);
+        expect(+tested).to.equal(+control);
+        done();
+    });
+    it('Should add 5 hours', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.add(test).hours(5),
+            tested = date.add(test).h(5);
+        expect(+tested).to.equal(+control);
+        done();
+    });
+    it('Should add 18 minutes', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.add(test).minutes(18),
+            tested = date.add(test).mins(18),
+            retested = date.add(test).m(18),
+            reretested = date.add(test).i(18);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
+        expect(+reretested).to.equal(+control);
+        done();
+    });
+    it('Should add 180 seconds', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.add(test).seconds(180),
+            tested = date.add(test).secs(180),
+            retested = date.add(test).s(180);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
         done();
     });
 });
@@ -94,8 +153,67 @@ describe('sub', () => {
     it('Should subtract 90 seconds', done => {
         let origin = new Date('2016-10-26T15:34:34.783'),
             subMins = new Date('2016-10-26T15:33:04.783'),
-            subtracted = date.sub(origin).secs(90);
+            subtracted = date.sub(origin).seconds(90);
         expect(+subtracted).to.equal(+subMins);
+        done();
+    });
+});
+
+describe('sub aliases', () => {
+    it('should do add 9 years', done => {
+        let test = new Date('2017-02-20T18:09:39.216Z'),
+            control = date.sub(test).years(9),
+            tested = date.sub(test).y(9),
+            retested = date.sub(test).Y(9);
+
+        expect(+control).to.equal(+tested);
+        expect(+control).to.equal(+retested);
+        done();
+    });
+    it('should do add 1 months', done => {
+        let test = new Date('2016-10-23T18:09:56.895'),
+            control = date.sub(test).months(1),
+            tested = date.sub(test).M(1),
+            retested = date.sub(test).mo(1);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
+        done();
+    });
+    it('should do sub one day', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.sub(test).days(1),
+            tested = date.sub(test).d(1);
+        expect(+tested).to.equal(+control);
+        done();
+    });
+    it('Should sub 5 hours', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.sub(test).hours(5),
+            tested = date.sub(test).h(5);
+        expect(+tested).to.equal(+control);
+        done();
+    });
+    it('Should sub 18 minutes', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.sub(test).minutes(18),
+            tested = date.sub(test).mins(18),
+            retested = date.sub(test).m(18),
+            reretested = date.sub(test).i(18);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
+        expect(+reretested).to.equal(+control);
+        done();
+    });
+    it('Should sub 180 seconds', done => {
+        let test = new Date('2016-10-23T15:34:34.783'),
+            control = date.sub(test).seconds(180),
+            tested = date.sub(test).secs(180),
+            retested = date.sub(test).s(180);
+
+        expect(+tested).to.equal(+control);
+        expect(+retested).to.equal(+control);
         done();
     });
 });
@@ -163,26 +281,6 @@ describe('last', () => {
      });
 });
 
-describe('getStart', () => {
-    it('Should return start hour of give time', done => {
-        let test = new Date('2017-02-20T15:34:34.783'),
-            control = +new Date('2017-02-20T15:00:00.000'),
-            tested = date.getStart(test).hour;
-
-        expect(+tested).to.deep.equal(control);
-        done();
-    });
-    it('Should return start momonto of the day of given date', done => {
-        let test = new Date('2017-02-20T15:34:34.783'),
-            offset = date.getOffset(test).int,
-            control = date.add(new Date('2017-02-20T00:00:00.000')).minutes(offset),
-            tested = date.getStart(test).day;
-
-        expect(+tested).to.deep.equal(+control);
-        done();
-    });
-});
-
 describe('getOffset', () => {
     it('Should return offset integer', done => {
         let control = new Date().getTimezoneOffset(),
@@ -196,6 +294,26 @@ describe('getOffset', () => {
             start = control.indexOf('GMT');
 
         expect(offset).to.equal(control.substring( start + 3, start + 8));
+        done();
+    });
+});
+
+describe('getStart', () => {
+    it('Should return start hour of give time', done => {
+        let test = new Date('2017-02-20T15:34:34.783'),
+            control = +new Date('2017-02-20T15:00:00.000'),
+            tested = date.getStart(test).hour;
+
+        expect(+tested).to.deep.equal(control);
+        done();
+    });
+    it('Should return start moment of the day of given date', done => {
+        let test = new Date('2017-02-20T15:34:34.783'),
+            offset = date.getOffset(test).int,
+            control = date.add(new Date('2017-02-20T00:00:00.000')).minutes(offset),
+            tested = date.getStart(test).day;
+
+        expect(+tested).to.deep.equal(+control);
         done();
     });
 });

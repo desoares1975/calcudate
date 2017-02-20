@@ -1,1 +1,1 @@
-module.exports = require('./dist/calcudate');
+module.exports = require('./dist/nodejs/calcudate');

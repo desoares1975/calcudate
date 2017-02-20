@@ -1,4 +1,5 @@
-#calcudate 1.0git pusho
+#Calcudate 2.0git pusho
+
 ##Usage
 ```bash
 npm install calcudate
@@ -56,14 +57,20 @@ Get start time of day or hour (On local time!)
 let date = require('calcudate');
 let aDate = new Date('2017-02-20T22:02:36:23.296');
 let myDate = getStart(aDate).day;
-// WARNING - return 2017-02-20T00:00:00:00.000 or 2017-02-20T03:00:00:00.000 depeding local time
+/*
+WARNING - return 2017-02-20T00:00:00:00.000 or
+2017-02-20T03:00:00:00.000 depeding local time
+*/
 ```
 Get the last day or date of a month:
 ```js
 let date = require('calcudate');
-let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day; //return 28
-let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day; //return 29
-let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day; //return 31
+let lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day;
+//return 28
+let lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day;
+//return 29
+let lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day;
+//return 31
 ```
 Get the integer timezone offset or the string
 ```js
@@ -76,3 +83,22 @@ let offset = date.getOffset().int;
 let offset = date.getOffset().str;
 
 ```
+##Main differences from 1.x.x versions:
+ - Added aliases to all add and sub methods, becouse the didi not have veri intuitive names
+    - Add secconds
+    ```js
+    let myDate = new Date();
+    let date = require('calcudate');
+    let test = date.add(myDate).s(10);
+    let test1 = date.add(myDate).secs(10);
+    let test2 = date.add(myDate).seconds(10);
+    return +test === +test1 && test === test2;
+    //returns true
+    ```
+    Every alias works just like it's relative method, bot in add and sub. Here ar all of then:
+        - secs -> s, seconds;
+        - minutes -> m, i, mins;
+        - hours -> h;
+        - days -> d;
+        - months -> M, mo;
+        - years -> y, Y;
