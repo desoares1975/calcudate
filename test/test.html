@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <script type="text/javascript" src="../dist/js/calcudate.js"></script>
+    <script type="text/javascript">
+        var date = calcudate.add().y(9);
+        console.log(date.toString(), 'date + nine years');
+
+        date = calcudate.add().d(10);
+        console.log(date.toString(), 'date date + 10 days');
+
+        date = calcudate.add().m(4);
+        console.log(date.toString(), 'date + 4 months');
+
+        date = calcudate.add().mo(15);
+        console.log(date.toString(), 'date fifteen months');
+
+        date = calcudate.add().hours(5);
+        console.log(date.toString(), 'date + five hours');
+
+        date = calcudate.add().mins(18);
+        console.log(date.toString(), 'date 18 minutes');
+
+        date = calcudate.add().seconds(180);
+        console.log(date.toString(), 'date + 180 seconds');
+
+        date = calcudate.sub().years(12);
+        console.log(date.toString(), 'date - 12 years');
+
+        date = calcudate.sub().months(24);
+        console.log(date.toString(), 'date - 24 months');
+
+        date = calcudate.sub().days(29);
+        console.log(date.toString(), 'date - 29 days');
+
+        date = calcudate.sub().h(29);
+        console.log(date.toString(), 'date - 29 hours');
+
+        date = calcudate.sub().i(25);
+        console.log(date.toString(), 'date - 25 minutes');
+
+        date = calcudate.sub().s(90);
+        console.log(date.toString(), 'date - 90 seconds');
+
+        date = calcudate.getLastOf(new Date('2016-02-03')).day;
+        console.log(date.toString(), 'last day of feb 2016');
+
+        date = calcudate.getLastOf(new Date('2016-02-02')).date;
+        console.log(date.toString(), 'last date of feb 2016');
+
+        date = calcudate.add().d(10);
+        console.log(date.toString(), 'date');
+    </script>
+</html>

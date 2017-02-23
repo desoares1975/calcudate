@@ -219,20 +219,49 @@ describe('sub aliases', () => {
 });
 
 describe('last', () => {
-     it('Should return last day of each month', done => {
-        let lastJan = date.getLastOf(new Date('2016-01-01 00:00:00')).day,
-            lastFeb = date.getLastOf(new Date('2016-02-01 00:00:00')).day,
-            lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).day,
-            lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).day,
-            lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).day,
-            lastMay = date.getLastOf(new Date('2016-05-01 12:00:00')).day,
-            lastJun = date.getLastOf(new Date('2016-06-01 03:53:33')).day,
-            lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).day,
-            lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).day,
-            lastSep = date.getLastOf(new Date('2016-09-01 03:00:00')).day,
-            lastOuc = date.getLastOf(new Date('2016-10-01 02:00:00')).day,
-            lastNov = date.getLastOf(new Date('2016-11-01 02:00:00')).day,
-            lastDec = date.getLastOf(new Date('2016-12-01 02:00:00')).day;
+    it('Should return last day of each month', done => {
+
+    let jan = new Date('2016-01-01T12:00:00.000Z'),
+        feb = new Date('2016-02-01T12:00:00.000Z'),
+        febL = new Date('2016-02-01T12:00:00.000Z'),
+        mar = new Date('2016-03-01T12:00:00.000Z'),
+        apr = new Date('2016-04-01T12:00:00.000Z'),
+        may = new Date('2016-05-01T12:00:00.000Z'),
+        jun = new Date('2016-06-01T12:00:00.000Z'),
+        jul = new Date('2016-07-01T12:00:00.000Z'),
+        ago = new Date('2016-08-01T12:00:00.000Z'),
+        sep = new Date('2016-09-01T12:00:00.000Z'),
+        ouc = new Date('2016-10-01T12:00:00.000Z'),
+        nov = new Date('2016-11-01T12:00:00.000Z'),
+        dez = new Date('2016-12-01T12:00:00.000Z');
+
+    jan = new Date('2016-01-01T' + pO(jan.getTimezoneOffset()) + ':00:00.000Z');
+    feb = new Date('2016-02-01T' + pO(feb.getTimezoneOffset()) + ':00:00.000Z');
+    febL = new Date('2015-02-01T' + pO(febL.getTimezoneOffset()) + ':00:00.000Z');
+    mar = new Date('2016-03-01T' + pO(mar.getTimezoneOffset()) + ':00:00.000Z');
+    apr = new Date('2016-04-01T' + pO(apr.getTimezoneOffset()) + ':00:00.000Z');
+    may = new Date('2016-05-01T' + pO(may.getTimezoneOffset()) + ':00:00.000Z');
+    jun = new Date('2016-06-01T' + pO(jun.getTimezoneOffset()) + ':00:00.000Z');
+    jul = new Date('2016-07-01T' + pO(jul.getTimezoneOffset()) + ':00:00.000Z');
+    ago = new Date('2016-08-01T' + pO(ago.getTimezoneOffset()) + ':00:00.000Z');
+    sep = new Date('2016-09-01T' + pO(sep.getTimezoneOffset()) + ':00:00.000Z');
+    ouc = new Date('2016-10-01T' + pO(ouc.getTimezoneOffset()) + ':00:00.000Z');
+    nov = new Date('2016-11-01T' + pO(nov.getTimezoneOffset()) + ':00:00.000Z');
+    dez = new Date('2016-12-01T' + pO(dez.getTimezoneOffset()) + ':00:00.000Z');
+
+    let lastJan = date.getLastOf(jan).day,
+        lastFeb = date.getLastOf(feb).day,
+        lastFebLast = date.getLastOf(febL).day,
+        lastMar = date.getLastOf(mar).day,
+        lastApr = date.getLastOf(apr).day,
+        lastMay = date.getLastOf(may).day,
+        lastJun = date.getLastOf(jun).day,
+        lastJul = date.getLastOf(jul).day,
+        lastAug = date.getLastOf(ago).day,
+        lastSep = date.getLastOf(sep).day,
+        lastOuc = date.getLastOf(ouc).day,
+        lastNov = date.getLastOf(nov).day,
+        lastDec = date.getLastOf(dez).day;
 
         expect(lastJan).to.equal(31);
         expect(lastFeb).to.equal(29);
@@ -248,35 +277,69 @@ describe('last', () => {
         expect(lastNov).to.equal(30);
         expect(lastDec).to.equal(31);
         done();
-     });
-     it('Should return last date of each month', done => {
-        let lastJan = date.getLastOf(new Date('2016-01-01 00:00:00')).date,
-            lastFeb = date.getLastOf(new Date('2016-02-01 00:00:00')).date,
-            lastFebLast = date.getLastOf(new Date('2015-02-01 03:00:00')).date,
-            lastMar = date.getLastOf(new Date('2016-03-01 03:00:00')).date,
-            lastApr = date.getLastOf(new Date('2016-04-01 03:00:00')).date,
-            lastMay = date.getLastOf(new Date('2016-05-01 12:00:00')).date,
-            lastJun = date.getLastOf(new Date('2016-06-01 03:00:00')).date,
-            lastJul = date.getLastOf(new Date('2016-07-01 03:00:00')).date,
-            lastAug = date.getLastOf(new Date('2016-08-01 03:00:00')).date,
-            lastSep = date.getLastOf(new Date('2016-09-01 03:00:00')).date,
-            lastOuc = date.getLastOf(new Date('2016-10-01 02:00:00')).date,
-            lastNov = date.getLastOf(new Date('2016-11-01 02:00:00')).date,
-            lastDec = date.getLastOf(new Date('2016-12-01 02:00:00')).date;
+    });
 
-        expect(lastJan.toString()).to.equal(new Date('Sun, 31 Jan 2016 02:00:00 GMT').toString());
-        expect(lastFeb.toString()).to.equal(new Date('2016-02-29 00:00:00').toString());
-        expect(lastFebLast.toString()).to.equal(new Date('2015-02-28 00:00:00').toString());
-        expect(lastMar.toString()).to.equal(new Date('2016-03-31 00:00:00').toString());
-        expect(lastApr.toString()).to.equal(new Date('2016-04-30 00:00:00').toString());
-        expect(lastMay.toString()).to.equal(new Date('2016-05-31 00:00:00').toString());
-        expect(lastJun.toString()).to.equal(new Date('2016-06-30 00:00:00').toString());
-        expect(lastJul.toString()).to.equal(new Date('2016-07-31 00:00:00').toString());
-        expect(lastAug.toString()).to.equal(new Date('2016-08-31 00:00:00').toString());
-        expect(lastSep.toString()).to.equal(new Date('2016-09-30 00:00:00').toString());
-        expect(lastOuc.toString()).to.equal(new Date('2016-10-31 00:00:00').toString());
-        expect(lastNov.toString()).to.equal(new Date('2016-11-30 00:00:00').toString());
-        expect(lastDec.toString()).to.equal(new Date('2016-12-31 00:00:00').toString());
+    let pO = offset => {
+        offset = offset > 0 ? offset / 60 : offset === 0 ? 0 : 24 + offset / 60;
+        return offset > 9 ? offset : '0' + offset;
+    };
+
+    let jan = new Date('2016-01-01T12:00:00.000Z'),
+        feb = new Date('2016-02-01T12:00:00.000Z'),
+        febL = new Date('2016-02-01T12:00:00.000Z'),
+        mar = new Date('2016-03-01T12:00:00.000Z'),
+        apr = new Date('2016-04-01T12:00:00.000Z'),
+        may = new Date('2016-05-01T12:00:00.000Z'),
+        jun = new Date('2016-06-01T12:00:00.000Z'),
+        jul = new Date('2016-07-01T12:00:00.000Z'),
+        ago = new Date('2016-08-01T12:00:00.000Z'),
+        sep = new Date('2016-09-01T12:00:00.000Z'),
+        ouc = new Date('2016-10-01T12:00:00.000Z'),
+        nov = new Date('2016-11-01T12:00:00.000Z'),
+        dez = new Date('2016-12-01T12:00:00.000Z');
+
+    jan = new Date('2016-01-01T' + pO(jan.getTimezoneOffset()) + ':00:00.000Z');
+    feb = new Date('2016-02-01T' + pO(feb.getTimezoneOffset()) + ':00:00.000Z');
+    febL = new Date('2015-02-01T' + pO(febL.getTimezoneOffset()) + ':00:00.000Z');
+    mar = new Date('2016-03-01T' + pO(mar.getTimezoneOffset()) + ':00:00.000Z');
+    apr = new Date('2016-04-01T' + pO(apr.getTimezoneOffset()) + ':00:00.000Z');
+    may = new Date('2016-05-01T' + pO(may.getTimezoneOffset()) + ':00:00.000Z');
+    jun = new Date('2016-06-01T' + pO(jun.getTimezoneOffset()) + ':00:00.000Z');
+    jul = new Date('2016-07-01T' + pO(jul.getTimezoneOffset()) + ':00:00.000Z');
+    ago = new Date('2016-08-01T' + pO(ago.getTimezoneOffset()) + ':00:00.000Z');
+    sep = new Date('2016-09-01T' + pO(sep.getTimezoneOffset()) + ':00:00.000Z');
+    ouc = new Date('2016-10-01T' + pO(ouc.getTimezoneOffset()) + ':00:00.000Z');
+    nov = new Date('2016-11-01T' + pO(nov.getTimezoneOffset()) + ':00:00.000Z');
+    dez = new Date('2016-12-01T' + pO(dez.getTimezoneOffset()) + ':00:00.000Z');
+
+    it('Should return last date of each month', done => {
+        let lastJan = date.getLastOf(jan).date,
+            lastFeb = date.getLastOf(feb).date,
+            lastFebLast = date.getLastOf(febL).date,
+            lastMar = date.getLastOf(mar).date,
+            lastApr = date.getLastOf(apr).date,
+            lastMay = date.getLastOf(may).date,
+            lastJun = date.getLastOf(jun).date,
+            lastJul = date.getLastOf(jul).date,
+            lastAug = date.getLastOf(ago).date,
+            lastSep = date.getLastOf(sep).date,
+            lastOuc = date.getLastOf(ouc).date,
+            lastNov = date.getLastOf(nov).date,
+            lastDec = date.getLastOf(dez).date;
+
+        expect(lastJan.toString()).to.equal(new Date('2016-01-31T' + pO(jan.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastFeb.toString()).to.equal(new Date('2016-02-29T' + pO(new Date('2016-02-28T12:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastFebLast.toString()).to.equal(new Date('2015-02-28T' + pO(new Date('2015-02-28T12:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastMar.toString()).to.equal(new Date('2016-03-31T' + pO(mar.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastApr.toString()).to.equal(new Date('2016-04-30T' + pO(apr.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastMay.toString()).to.equal(new Date('2016-05-31T' + pO(may.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastJun.toString()).to.equal(new Date('2016-06-30T' + pO(jun.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastJul.toString()).to.equal(new Date('2016-07-31T' + pO(jul.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastAug.toString()).to.equal(new Date('2016-08-31T' + pO(ago.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastSep.toString()).to.equal(new Date('2016-09-30T' + pO(sep.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastOuc.toString()).to.equal(new Date('2016-10-31T' + pO(new Date('2016-10-31T12:00:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastNov.toString()).to.equal(new Date('2016-11-30T' + pO(nov.getTimezoneOffset()) + ':00:00.000Z').toString());
+        expect(lastDec.toString()).to.equal(new Date('2016-12-31T' + pO(dez.getTimezoneOffset()) + ':00:00.000Z').toString());
         done();
      });
 });

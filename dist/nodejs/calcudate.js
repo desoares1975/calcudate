@@ -12,16 +12,16 @@ const calcudate = {
         d = d || new Date();
         let main = {
             seconds: a => {
-                return new Date(d.getTime() + (a * sec));
+                return new Date(+d + (a * sec));
             },
             minutes: a => {
-                return new Date(d.getTime() + (a * min));
+                return new Date(+d + (a * min));
             },
             hours: a => {
-                return new Date(d.getTime() + (a * hour));
+                return new Date(+d + (a * hour));
             },
             days: a => {
-                return new Date(d.getTime() + (a * day));
+                return new Date(+d + (a * day));
             },
             months: a => {
                 return new Date (d.getFullYear(), (d.getMonth() + a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
@@ -44,16 +44,16 @@ const calcudate = {
         d = d || new Date();
         let main = {
             seconds: a => {
-                return new Date(d.getTime()  - (sec * a));
+                return new Date(+d  - (sec * a));
             },
             minutes: a => {
-                return new Date(d.getTime() - (min * a));
+                return new Date(+d - (min * a));
             },
             hours: a => {
-                return new Date(d.getTime() - (a * hour));
+                return new Date(+d - (a * hour));
             },
             days: a => {
-                return new Date(d.getTime() - (a * day));
+                return new Date(+d - (a * day));
             },
             months: a => {
                 return new Date (d.getFullYear(), (d.getMonth() - a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
@@ -74,6 +74,7 @@ const calcudate = {
     },
     getLastOf: d => {
         d = d || new Date();
+
         return {
             'day': new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(),
             'date': new Date(d.getFullYear(), d.getMonth() + 1, 0)
@@ -89,7 +90,7 @@ const calcudate = {
     getOffset: d => {
         d = d || new Date();
         let offset = d.getTimezoneOffset(),
-            offsetToHours = offset / 60;
+            offsetToHours = (offset > 0 ? offset / 60 : offset / -60);
 
         return {
             'int': offset,
