@@ -6,28 +6,33 @@ const day = 86400000,
     sec = 1000;
 
 const calcudate = {
-    add: d => {
-        // d is for data
+    add: date => {
         // a is for amount
-        d = d || new Date();
+        date = date || new Date();
         let main = {
-            seconds: a => {
-                return new Date(+d + (a * sec));
+            seconds: amount => {
+                date.setSeconds(date.getSeconds() + amount);
+                return date;
             },
-            minutes: a => {
-                return new Date(+d + (a * min));
+            minutes: amount => {
+                date.setMinutes(date.getMinutes() + amount);
+                return date;
             },
-            hours: a => {
-                return new Date(+d + (a * hour));
+            hours: amount => {
+                date.setHours(date.getHours() + amount);
+                return date;
             },
-            days: a => {
-                return new Date(+d + (a * day));
+            days: amount => {
+                date.setDate(date.getDate() + amount);
+                return date;
             },
-            months: a => {
-                return new Date (d.getFullYear(), (d.getMonth() + a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            months: amount => {
+                date.setMonth(date.getMonth() + amount);
+                return date;
             },
-            years: a => {
-                return new Date ((d.getFullYear() + a), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            years: amount => {
+                date.setFullYear(date.getFullYear() + amount);
+                return date;
             }
         };
 
@@ -40,30 +45,37 @@ const calcudate = {
 
         return main;
     },
-    sub: d => {
-        d = d || new Date();
+    sub: date => {
+        // a is for amount
+        date = date || new Date();
         let main = {
-            seconds: a => {
-                return new Date(+d  - (sec * a));
+            seconds: amount => {
+                date.setSeconds(date.getSeconds() - amount);
+                return date;
             },
-            minutes: a => {
-                return new Date(+d - (min * a));
+            minutes: amount => {
+                date.setMinutes(date.getMinutes() - amount);
+                return date;
             },
-            hours: a => {
-                return new Date(+d - (a * hour));
+            hours: amount => {
+                date.setHours(date.getHours() - amount);
+                return date;
             },
-            days: a => {
-                return new Date(+d - (a * day));
+            days: amount => {
+                date.setDate(date.getDate() - amount);
+                return date;
             },
-            months: a => {
-                return new Date (d.getFullYear(), (d.getMonth() - a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            months: amount => {
+                date.setMonth(date.getMonth() - amount);
+                return date;
             },
-            years: a => {
-                return new Date((d.getFullYear() - a), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            years: amount => {
+                date.setFullYear(date.getFullYear() - amount);
+                return date;
             }
         };
 
-        main.s = main.secs = main.seconds;
+        main.secs = main.s = main.seconds;
         main.m = main.mins = main.i = main.minutes;
         main.h = main.hours;
         main.d = main.days;
@@ -72,12 +84,12 @@ const calcudate = {
 
         return main;
     },
-    getLastOf: d => {
-        d = d || new Date();
+    getLastOf: date => {
+        date = date || new Date();
 
         return {
-            'day': new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(),
-            'date': new Date(d.getFullYear(), d.getMonth() + 1, 0)
+            'day': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+            'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
         };
     },
     getStart: d => {
