@@ -92,22 +92,34 @@ const calcudate = {
             'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
         };
     },
-    getStart: d => {
-        d = d || new Date();
+    getStart: date => {
+        date = date || new Date();
         return {
-            'day': new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0),
-            'hour': new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours())
+            'day': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0),
+            'hour': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours())
         };
     },
     getOffset: d => {
         d = d || new Date();
         let offset = d.getTimezoneOffset(),
-            offsetToHours = (offset > 0 ? offset / 60 : offset / -60);
+            offsetToHours = (offset > 0 ? offset / 60 : offset / -60),
+            isFloat = offset % 1 !== 0;
 
-        return {
+        let offsets = {
             'int': offset,
-            'str':  (offset > 0 ? '-' : '+') +  (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + '00'
+            'str':  (offset > 0 ? '-' : '+') +
+                (offsetToHours < 9 ? '0' + parseInt(offsetToHours) :
+                    parseInt(offsetToHours)) + '00',
+            'unsStr': (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + '00',
+            'midnight': (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + ':00'
+
         };
+
+        offsets.integer = offsets.int;
+        offsets.string = offsets.str;
+        offsets.unsigStr = offsets.unsignedString = offsets.unsStr;
+
+        return offsets;
     }
 };
 

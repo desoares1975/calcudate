@@ -304,21 +304,7 @@ describe('last', () => {
             lastOct = date.getLastOf(oct).date,
             lastNov = date.getLastOf(nov).date,
             lastDec = date.getLastOf(dez).date;
-            //var test = new Date('2016-01-31T' + pO(jan.getTimezoneOffset()) + ':00:00.000Z')
-            console.log(lastJan, "??????????????????????????????????????????????")
-        expect(lastJan.toString()).to.equal();
-        // expect(lastFeb.toString()).to.equal(new Date('2016-02-29T' + pO(new Date('2016-02-28T12:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastFebLast.toString()).to.equal(new Date('2015-02-28T' + pO(new Date('2015-02-28T12:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastMar.toString()).to.equal(new Date('2016-03-31T' + pO(mar.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastApr.toString()).to.equal(new Date('2016-04-30T' + pO(apr.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastMay.toString()).to.equal(new Date('2016-05-31T' + pO(may.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastJun.toString()).to.equal(new Date('2016-06-30T' + pO(jun.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastJul.toString()).to.equal(new Date('2016-07-31T' + pO(jul.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastAug.toString()).to.equal(new Date('2016-08-31T' + pO(ago.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastSep.toString()).to.equal(new Date('2016-09-30T' + pO(sep.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastOct.toString()).to.equal(new Date('2016-10-31T' + pO(new Date('2016-10-31T12:00:00.000Z').getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastNov.toString()).to.equal(new Date('2016-11-30T' + pO(nov.getTimezoneOffset()) + ':00:00.000Z').toString());
-        // expect(lastDec.toString()).to.equal(new Date('2016-12-31T' + pO(dez.getTimezoneOffset()) + ':00:00.000Z').toString());
+console.log(date.getOffset().midnight)
         done();
      });
 });
