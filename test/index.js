@@ -5,15 +5,15 @@ const expect = require('chai').expect;
 
 describe('add', () => {
     it('should do add 9 years', done => {
-        let origin = new Date('2016-10-23T18:09:56.895'),
-            addYears = new Date('2025-10-23T18:09:56.895'),
+        let origin = new Date('2016-10-23 18:09:56.895'),
+            addYears = new Date('2025-10-23 18:09:56.895'),
             summed = date.add(origin).years(9);
         expect(+summed).to.equal(+addYears);
         done();
     });
     it('should do add 4 months', done => {
-        let origin = new Date('2016-05-23T18:09:56.895'),
-            addMonths = new Date('2016-09-23T18:09:56.895'),
+        let origin = new Date('2016-05-23 18:09:56.895'),
+            addMonths = new Date('2016-09-23 18:09:56.895'),
             summed = date.add(origin).months(4);
         expect(+summed).to.equal(+addMonths);
         done();
@@ -116,8 +116,8 @@ describe('add aliases', () => {
 
 describe('sub', () => {
     it('Should subtract 12 years', done => {
-        let origin = new Date('2016-07-10T18:32:25.223'),
-            subYears = new Date('2004-07-10T18:32:25.223'),
+        let origin = new Date('2016-07-10 18:32:25.223'),
+            subYears = new Date('2004-07-10 18:32:25.223'),
             subtracted = date.sub(origin).years(12);
         expect(+subtracted).to.equal(+subYears);
         done();
@@ -219,32 +219,22 @@ describe('sub aliases', () => {
 });
 
 describe('last', () => {
-    let getZeroGmt = d => {
-        let offset = d.getTimezoneOffset(),
-            hour = offset > 0 ? offset / 60 : offset === 0 ? 0 : 24 + offset / 60;
-
-        if (offset < 0) {
-            d = date.sub(d).d(1);
-        }
-
-        return new Date (d.getFullYear(), d.getMonth(), d.getDate(), offset, 0, 0);
-    };
-
+    
     it('Should return last day of each month', done => {
 
-    let jan = getZeroGmt(new Date('2016-01-01T00:00:00.000Z')),
-        feb = getZeroGmt(new Date('2016-02-01T00:00:00.000Z')),
-        febL = getZeroGmt(new Date('2015-02-01T00:00:00.000Z')),
-        mar = getZeroGmt(new Date('2016-03-01T00:00:00.000Z')),
-        apr = getZeroGmt(new Date('2016-04-01T00:00:00.000Z')),
-        may = getZeroGmt(new Date('2016-05-01T00:00:00.000Z')),
-        jun = getZeroGmt(new Date('2016-06-01T00:00:00.000Z')),
-        jul = getZeroGmt(new Date('2016-07-01T00:00:00.000Z')),
-        ago = getZeroGmt(new Date('2016-08-01T00:00:00.000Z')),
-        sep = getZeroGmt(new Date('2016-09-01T00:00:00.000Z')),
-        oct = getZeroGmt(new Date('2016-10-01T00:00:00.000Z')),
-        nov = getZeroGmt(new Date('2016-11-01T00:00:00.000Z')),
-        dez = getZeroGmt(new Date('2016-12-01T00:00:00.000Z'));
+    let jan = new Date('2016-01-01 00:00:00.000'),
+        feb = new Date('2016-02-01 00:00:00.000'),
+        febL = new Date('2015-02-01 00:00:00.000'),
+        mar = new Date('2016-03-01 00:00:00.000'),
+        apr = new Date('2016-04-01 00:00:00.000'),
+        may = new Date('2016-05-01 00:00:00.000'),
+        jun = new Date('2016-06-01 00:00:00.000'),
+        jul = new Date('2016-07-01 00:00:00.000'),
+        ago = new Date('2016-08-01 00:00:00.000'),
+        sep = new Date('2016-09-01 00:00:00.000'),
+        oct = new Date('2016-10-01 00:00:00.000'),
+        nov = new Date('2016-11-01 00:00:00.000'),
+        dez = new Date('2016-12-01 00:00:00.000');
 
     let lastJan = date.getLastOf(jan).day,
         lastFeb = date.getLastOf(feb).day,
@@ -273,22 +263,23 @@ describe('last', () => {
         expect(lastOct).to.equal(31);
         expect(lastNov).to.equal(30);
         expect(lastDec).to.equal(31);
+
         done();
     });
 
-    let jan = getZeroGmt(new Date('2016-01-01T00:00:00.000Z')),
-        feb = getZeroGmt(new Date('2016-02-01T00:00:00.000Z')),
-        febL = getZeroGmt(new Date('2015-02-01T00:00:00.000Z')),
-        mar = getZeroGmt(new Date('2016-03-01T00:00:00.000Z')),
-        apr = getZeroGmt(new Date('2016-04-01T00:00:00.000Z')),
-        may = getZeroGmt(new Date('2016-05-01T00:00:00.000Z')),
-        jun = getZeroGmt(new Date('2016-06-01T00:00:00.000Z')),
-        jul = getZeroGmt(new Date('2016-07-01T00:00:00.000Z')),
-        ago = getZeroGmt(new Date('2016-08-01T00:00:00.000Z')),
-        sep = getZeroGmt(new Date('2016-09-01T00:00:00.000Z')),
-        oct = getZeroGmt(new Date('2016-10-01T00:00:00.000Z')),
-        nov = getZeroGmt(new Date('2016-11-01T00:00:00.000Z')),
-        dez = getZeroGmt(new Date('2016-12-01T00:00:00.000Z'));
+    let jan = new Date('2016-01-01 00:00:00.000'),
+        feb = new Date('2016-02-01 00:00:00.000'),
+        febL = new Date('2015-02-01 00:00:00.000'),
+        mar = new Date('2016-03-01 00:00:00.000'),
+        apr = new Date('2016-04-01 00:00:00.000'),
+        may = new Date('2016-05-01 00:00:00.000'),
+        jun = new Date('2016-06-01 00:00:00.000'),
+        jul = new Date('2016-07-01 00:00:00.000'),
+        ago = new Date('2016-08-01 00:00:00.000'),
+        sep = new Date('2016-09-01 00:00:00.000'),
+        oct = new Date('2016-10-01 00:00:00.000'),
+        nov = new Date('2016-11-01 00:00:00.000'),
+        dez = new Date('2016-12-01 00:00:00.000');
 
     it('Should return last date of each month', done => {
         let lastJan = date.getLastOf(jan).date,
@@ -304,7 +295,21 @@ describe('last', () => {
             lastOct = date.getLastOf(oct).date,
             lastNov = date.getLastOf(nov).date,
             lastDec = date.getLastOf(dez).date;
-console.log(date.getOffset().midnight)
+
+        expect(+lastJan).to.equal(+new Date('2016-01-31 00:00:00.000'));
+        expect(+lastFeb).to.equal(+new Date('2016-02-29 00:00:00.000'));
+        expect(+lastFebLast).to.equal(+new Date('2015-02-28 00:00:00.000'));
+        expect(+lastMar).to.equal(+new Date('2016-03-31 00:00:00.000'));
+        expect(+lastApr).to.equal(+new Date('2016-04-30 00:00:00.000'));
+        expect(+lastMay).to.equal(+new Date('2016-05-31 00:00:00.000'));
+        expect(+lastJun).to.equal(+new Date('2016-06-30 00:00:00.000'));
+        expect(+lastJul).to.equal(+new Date('2016-07-31 00:00:00.000'));
+        expect(+lastAug).to.equal(+new Date('2016-08-31 00:00:00.000'));
+        expect(+lastSep).to.equal(+new Date('2016-09-30 00:00:00.000'));
+        expect(+lastOct).to.equal(+new Date('2016-10-31 00:00:00.000'));
+        expect(+lastNov).to.equal(+new Date('2016-11-30 00:00:00.000'));
+        expect(+lastDec).to.equal(+new Date('2016-12-31 00:00:00.000'));
+        
         done();
      });
 });
@@ -321,7 +326,7 @@ describe('getOffset', () => {
             control = new Date().toString(),
             start = control.indexOf('GMT');
 
-        expect(offset).to.equal(control.substring( start + 3, start + 8));
+        expect(offset).to.equal(control.substring(start + 3, start + 8));
         done();
     });
 });
@@ -336,7 +341,7 @@ describe('getStart', () => {
         done();
     });
     it('Should return start moment of the day of given date', done => {
-        let test = new Date('2017-02-20T15:34:34.783'),
+        let test = new Date('2017-02-20 15:34:34.783'),
             offset = date.getOffset(test).int,
             control = date.add(new Date('2017-02-20T00:00:00.000')).minutes(offset),
             tested = date.getStart(test).day;

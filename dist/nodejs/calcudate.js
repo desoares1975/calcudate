@@ -1,10 +1,5 @@
 'use strict';
 
-const day = 86400000,
-    hour = 3600000,
-    min = 60000,
-    sec = 1000;
-
 const calcudate = {
     add: date => {
         // a is for amount
@@ -108,10 +103,10 @@ const calcudate = {
         let offsets = {
             'int': offset,
             'str':  (offset > 0 ? '-' : '+') +
-                (offsetToHours < 9 ? '0' + parseInt(offsetToHours) :
+                (offsetToHours <= 9 ? '0' + parseInt(offsetToHours) :
                     parseInt(offsetToHours)) + '00',
-            'unsStr': (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + '00',
-            'midnight': (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + ':00'
+            'unsStr': (offsetToHours <= 9 ? '0' + offsetToHours : offsetToHours) + '00',
+            'midnight': (offsetToHours <= 9 ? '0' + offsetToHours : offsetToHours) + ':00'
 
         };
 
