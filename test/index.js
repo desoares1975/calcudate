@@ -325,7 +325,6 @@ describe('getOffset', () => {
         let offset = date.getOffset().str,
             control = new Date().toString(),
             start = control.indexOf('GMT');
-
         expect(offset).to.equal(control.substring(start + 3, start + 8));
         done();
     });
@@ -333,8 +332,8 @@ describe('getOffset', () => {
 
 describe('getStart', () => {
     it('Should return start hour of give time', done => {
-        let test = new Date('2017-02-20T15:34:34.783'),
-            control = +new Date('2017-02-20T15:00:00.000'),
+        let test = new Date('2017-02-20 15:34:34.783'),
+            control = +new Date('2017-02-20 15:00:00.000'),
             tested = date.getStart(test).hour;
 
         expect(+tested).to.deep.equal(control);

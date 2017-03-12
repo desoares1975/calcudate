@@ -83,36 +83,35 @@ const calcudate = {
         date = date || new Date();
 
         return {
+            'd': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
             'day': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
             'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
         };
     },
     getStart: date => {
         date = date || new Date();
-        return {
+        let starts = {
             'day': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0),
             'hour': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours())
         };
+        starts.d = starts.day;
+        starts.h = starts.hour;
+
+        return starts;
     },
-    getOffset: d => {
-        d = d || new Date();
-        let offset = d.getTimezoneOffset(),
-            offsetToHours = (offset > 0 ? offset / 60 : offset / -60),
-            isFloat = offset % 1 !== 0;
+    getOffset: date => {
+        date = date || new Date();
+        let offset = date.getTimezoneOffset(),
+            toString = date.toString(),
+            indexOfGMT = toString.indexOf('GMT');
 
         let offsets = {
             'int': offset,
-            'str':  (offset > 0 ? '-' : '+') +
-                (offsetToHours <= 9 ? '0' + parseInt(offsetToHours) :
-                    parseInt(offsetToHours)) + '00',
-            'unsStr': (offsetToHours <= 9 ? '0' + offsetToHours : offsetToHours) + '00',
-            'midnight': (offsetToHours <= 9 ? '0' + offsetToHours : offsetToHours) + ':00'
-
+            'str': toString.slice(indexOfGMT + 3, indexOfGMT + 8)
         };
 
-        offsets.integer = offsets.int;
-        offsets.string = offsets.str;
-        offsets.unsigStr = offsets.unsignedString = offsets.unsStr;
+        offsets.integer = offsets.i = offsets.int;
+        offsets.string = offsets.s = offsets.str;
 
         return offsets;
     }

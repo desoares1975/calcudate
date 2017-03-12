@@ -1,33 +1,33 @@
 'use strict';
 
-var day = 86400000,
-    hour = 3600000,
-    min = 60000,
-    sec = 1000;
-
 var calcudate = {
-    add: function (d) {
-        // d is for data
+    add: function (date)  {
         // a is for amount
-        d = d || new Date();
+        date = date || new Date();
         var main = {
-            seconds: function (a) {
-                return new Date(+d + (a * sec));
+            seconds: function (amount)  {
+                date.setSeconds(date.getSeconds() + amount);
+                return date;
             },
-            minutes: function (a) {
-                return new Date(+d + (a * min));
+            minutes: function (amount)  {
+                date.setMinutes(date.getMinutes() + amount);
+                return date;
             },
-            hours: function (a) {
-                return new Date(+d + (a * hour));
+            hours: function (amount)  {
+                date.setHours(date.getHours() + amount);
+                return date;
             },
-            days: function (a) {
-                return new Date(+d + (a * day));
+            days: function (amount)  {
+                date.setDate(date.getDate() + amount);
+                return date;
             },
-            months: function (a) {
-                return new Date (d.getFullYear(), (d.getMonth() + a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            months: function (amount)  {
+                date.setMonth(date.getMonth() + amount);
+                return date;
             },
-            years: function (a) {
-                return new Date ((d.getFullYear() + a), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            years: function (amount)  {
+                date.setFullYear(date.getFullYear() + amount);
+                return date;
             }
         };
 
@@ -40,30 +40,37 @@ var calcudate = {
 
         return main;
     },
-    sub: function (d) {
-        d = d || new Date();
+    sub: function (date)  {
+        // a is for amount
+        date = date || new Date();
         var main = {
-            seconds: function (a) {
-                return new Date(+d - (sec * a));
+            seconds: function (amount)  {
+                date.setSeconds(date.getSeconds() - amount);
+                return date;
             },
-            minutes: function (a) {
-                return new Date(+d - (min * a));
+            minutes: function (amount)  {
+                date.setMinutes(date.getMinutes() - amount);
+                return date;
             },
-            hours: function (a) {
-                return new Date(+d - (a * hour));
+            hours: function (amount)  {
+                date.setHours(date.getHours() - amount);
+                return date;
             },
-            days: function (a) {
-                return new Date(+d - (a * day));
+            days: function (amount)  {
+                date.setDate(date.getDate() - amount);
+                return date;
             },
-            months: function (a) {
-                return new Date (d.getFullYear(), (d.getMonth() - a), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            months: function (amount)  {
+                date.setMonth(date.getMonth() - amount);
+                return date;
             },
-            years: function (a) {
-                return new Date((d.getFullYear() - a), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds(), d.getMilliseconds());
+            years: function (amount)  {
+                date.setFullYear(date.getFullYear() - amount);
+                return date;
             }
         };
 
-        main.s = main.secs = main.seconds;
+        main.secs = main.s = main.seconds;
         main.m = main.mins = main.i = main.minutes;
         main.h = main.hours;
         main.d = main.days;
@@ -72,30 +79,40 @@ var calcudate = {
 
         return main;
     },
-    getLastOf: function (d) {
-        d = d || new Date();
-        d = new Date(+d + (d.getTimezoneOffset() * 60000));
+    getLastOf: function (date)  {
+        date = date || new Date();
 
         return {
-            'day': new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(),
-            'date': new Date(d.getFullYear(), d.getMonth() + 1, 0)
+            'd': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+            'day': new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(),
+            'date': new Date(date.getFullYear(), date.getMonth() + 1, 0)
         };
     },
-    getStart: function (d) {
-        d = d || new Date();
-        return {
-            'day': new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0),
-            'hour': new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours())
+    getStart: function (date)  {
+        date = date || new Date();
+        var starts = {
+            'day': new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0),
+            'hour': new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours())
         };
-    },
-    getOffset: function (d) {
-        d = d || new Date();
-        var offset = d.getTimezoneOffset(),
-            offsetToHours = (offset > 0 ? offset / 60 : offset / -60);
+        starts.d = starts.day;
+        starts.h = starts.hour;
 
-        return {
+        return starts;
+    },
+    getOffset: function (date)  {
+        date = date || new Date();
+        var offset = date.getTimezoneOffset(),
+            toString = date.toString(),
+            indexOfGMT = toString.indexOf('GMT');
+
+        var offsets = {
             'int': offset,
-            'str': (offset > 0 ? '-' : '+') +  (offsetToHours < 9 ? '0' + offsetToHours : offsetToHours) + '00'
+            'str': toString.slice(indexOfGMT + 3, indexOfGMT + 8)
         };
+
+        offsets.integer = offsets.i = offsets.int;
+        offsets.string = offsets.s = offsets.str;
+
+        return offsets;
     }
 };

@@ -1,4 +1,4 @@
-#Calcudate 2.0git pusho
+#Calcudate 2.0
 
 ##Usage
 ```bash
@@ -13,7 +13,7 @@ let someDate = new Date('2015-11-12');
 //add ten years
 date.add(new Date()).years(10)
 
-// returns date '2015-11-12T00:00:00'
+//returns date '2015-11-12T00:00:00'
 date.add(someDate).months(10)
 
 //return date '2016-10-20T10:10:10.000'
@@ -84,6 +84,12 @@ let offset = date.getOffset().str;
 
 ```
 ##Main differences from 1.x.x versions:
+ Added support for browser (calcudate/dist/js/calcudate.js)
+ ```html
+<script type="text/javascript" src="../dist/js/calcudate.js"></script>
+ ```
+ -Fixed several error on add and sub for years ans months that disconsidered minutes and seconds.
+ -Fixed getOffset() for regions with GMT whithout straight hours offset.(-01:30, +04:45, ...) 
  - Added aliases to all add and sub methods, becouse the didi not have veri intuitive names
     - Add secconds
     ```js
@@ -95,10 +101,16 @@ let offset = date.getOffset().str;
     return +test === +test1 && test === test2;
     //returns true
     ```
-    Every alias works just like it's relative method, bot in add and sub. Here ar all of then:
+    Alias that works just like it's relative method, both in add and sub. Here ar all of then:
         - secs -> s, seconds;
         - minutes -> m, i, mins;
         - hours -> h;
         - days -> d;
         - months -> M, mo;
         - years -> y, Y;
+    Other alias that works:
+        - getLastOf.day -> getLastOf.d
+        - getStart.day -> getStart.d
+        - getStart.hour -> getStart.h
+        - getOffset.str -> getOffset.string -> getOffset.s
+        - getOffset.int -> getOffset.integer -> getOffset.i
